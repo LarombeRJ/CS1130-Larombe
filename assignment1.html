@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="style3.css">
+	<title>Assignment1</title>
+</head>
+<body>
+	<nav>
+		<label class="logo"> CS 1130 Project </label>
+		<ul>
+			<li> <a href="index.html"> HOME </a></li>
+			<li> <a href="Assignment1.html"> Assignment 1 </a></li>
+			<li> <a href="Assignment2.html"> Assignment 2</a></li>
+			<li> <a href="Assignment3.html"> Assignment 3</a></li>
+			<li> <a href="Assignment4.html"> Assignment 4</a></li>
+		</ul>
+	</nav>
+	<div class="content">
+		<div class="wrapper">
+			<h1> Assignment 1</h1>
+			<h3> Conversion (Celsius to Fahrenheit, Fahrenhiet to Celsius, Meters to Feet, Feet to Meters)</h3>
+		<div class="innerContent">
+			<div class="converter">
+				<div class="left-container">
+					<input type="number" name="celsius" id="celsius">
+					<label>Celsius</label>
+				</div>
+
+				<p class="equal"> = </p>
+
+				<div class="right-container">
+					<input type="number" name="fahernheit" id="fahrenheit">
+					<label>Fahrenheit</label>
+				</div>
+			</div>
+			<div class="formula">
+				<label class="label"> Answer: </label>
+				<p class="equation" id="temperature-equation"></p>
+			</div>
+		</div>
+		<div class="innerContent">
+			<div class="converter">
+				<div class="left-container">
+					<input type="number" name="feet" id="feet">
+					<label>Feet</label>
+				</div>
+
+				<p class="equal"> = </p>
+
+				<div class="right-container">
+					<input type="number" name="meters" id="meters">
+					<label> Meters </label>
+				</div>
+			</div>
+			<div class="formula">
+				<label class="label"> Answer: </label>
+				<p class="equation" id="lenght-equation"></p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	const celsius = document.getElementById("celsius")
+    const fahrenheit = document.getElementById("fahrenheit")
+    const temperatureEq = document.getElementById("temperature-equation")
+    const meter = document.getElementById("meters")
+    const feet = document.getElementById("feet")
+    const lenghtEq = document.getElementById("lenght-equation")
+
+    const convertTemp = (event) =>{
+
+      const tempType = event.target.name
+      const tempVal = event.target.value
+
+      if(tempVal === ''){
+        celsius.value = ''
+        fahrenheit.value = ''
+        temperatureEq.innerHTML = ''
+      } else if(tempType === 'celsius'){
+        const x = (tempVal * 9/5) +32
+        fahrenheit.value = x
+        temperatureEq.innerHTML = 'The ' + celsius.value + ' celsius is equivalent to ' + x + ' fahrenheit'
+      } else if(tempType === 'fahrenheit'){
+        const x = (tempVal - 32) * (5/9)
+        celsius.value = x
+        temperatureEq.innerHTML = 'The ' + fahrenheit.value + ' fahrenheit is equivalent to ' + x + ' celsius'
+      }
+    }
+
+    const convertLenght = (event)=> {
+      const lengthType = event.target.name
+      const lengthVal = event.target.value
+
+      if(lengthVal === ''){
+        feet.value = ''
+        meter.value = ''
+        lenghtEq.innerHTML = ''
+      } else if(lengthType === 'feet'){
+        const x = Math.round((lengthVal*12)*(2.54/100)*1000000)/1000000
+        meter.value = x
+        lenghtEq.innerHTML ='In ' + feet.value + ' feet is equivalent to ' + x + ' meter' 
+      } else if(lengthType === 'meters'){
+        const x = Math.round((lengthVal*100)*(1/2.54)*(1/12)*1000000)/1000000
+        feet.value = x
+        lenghtEq.innerHTML = 'In ' + meter.value + ' meter is equivalent to' + x + ' feet'
+      }
+    }
+
+    celsius.addEventListener("focus", convertTemp)
+    celsius.addEventListener("keyup",convertTemp)
+    fahrenheit.addEventListener("focus", convertTemp)
+    fahrenheit.addEventListener("keyup",convertTemp)
+    feet.addEventListener("focus",convertLenght)
+    feet.addEventListener("keyup",convertLenght)
+    meter.addEventListener("focus", convertLenght)
+    meter.addEventListener("keyup", convertLenght)
+
+    hamburger = document.querySelector(".hamburger");
+    hamburger.onclick = function() {
+        navBar = document.querySelector(".nav-links");
+        navBar.classList.toggle("active");
+    }
+</script>
+</body>
+</html>
